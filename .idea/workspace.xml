@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d20c5cc-7f81-4a33-b1b2-0b33165237e7" name="Changes" comment="기본 코드 및 psswd분류">
+    <list default="true" id="6d20c5cc-7f81-4a33-b1b2-0b33165237e7" name="Changes" comment="readme 및 파일정리">
+      <change afterPath="$PROJECT_DIR$/termPj/cli.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/termPj/passwd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,9 +24,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;eunhyeme&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/eunhyeme/2024_database_project.git&quot;,
+    &quot;accountId&quot;: &quot;464e3743-d717-4dcc-b181-6b9dae7e6faf&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2p2tyuVtYIElzJkjQ5uwpUlJUgk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -37,6 +51,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/user/PycharmProjects/DBproject/termPj",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -45,6 +60,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\PycharmProjects\DBproject\termPj" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\PycharmProjects\DBproject\HW#5" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -61,7 +84,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731976255789</updated>
-      <workItem from="1731976256915" duration="7213000" />
+      <workItem from="1731976256915" duration="7533000" />
+      <workItem from="1731999448542" duration="116000" />
+      <workItem from="1733408275524" duration="235000" />
+      <workItem from="1733409198419" duration="1823000" />
+      <workItem from="1733491517753" duration="2794000" />
     </task>
     <task id="LOCAL-00001" summary="기본 코드 및 psswd분류">
       <option name="closed" value="true" />
@@ -79,23 +106,84 @@
       <option name="project" value="LOCAL" />
       <updated>1731982556281</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="readme 및 파일정리">
+      <option name="closed" value="true" />
+      <created>1731983803969</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731983803969</updated>
+    </task>
+    <task id="LOCAL-00004" summary="readme 및 파일정리">
+      <option name="closed" value="true" />
+      <created>1733408299473</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733408299473</updated>
+    </task>
+    <task id="LOCAL-00005" summary="readme 및 파일정리">
+      <option name="closed" value="true" />
+      <created>1733408530314</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733408530314</updated>
+    </task>
+    <task id="LOCAL-00006" summary="readme 및 파일정리">
+      <option name="closed" value="true" />
+      <created>1733408571923</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733408571923</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="기본 코드 및 psswd분류" />
-    <option name="LAST_COMMIT_MESSAGE" value="기본 코드 및 psswd분류" />
+    <MESSAGE value="readme 및 파일정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme 및 파일정리" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cli.py</url>
+          <url>file://$PROJECT_DIR$/HW#5/cli.py</url>
           <line>20</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/HW#5/cli.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
