@@ -1,40 +1,245 @@
-import mysql.connector
-from mysql.connector import Error
+import pymysql
 from connectInfo import *
-# 학생 정보 삽입
-def insert_student():
-    print("\n### 학생 정보 입력 ###")
-    name = input("학생 이름: ")
-    student_number = input("학생 학번: ")
-    gender = input("성별(남자/여자): ")
-    email = input("학생 이메일: ")
-    club_id = int(input("동아리 ID를 입력하세요: "))
-    major = input("전공을 입력하세요: ")
-    GPA = float(input("평균학점을 입력하세요: "))
-    semester = int(input("학기를 입력하세요: "))
-    birth_date = input("생일을 입력하세요 (YYYY-MM-DD): ")
-    status = input("학적 상태를 입력하세요 (Enrolled/Leave of Absence/Military Leave/Graduated/Postponed Graduation/Graduate School): ")
 
-    connection = connect_db()
+
+# 학생 정보 출력
+def show_student():
+    connection = connect_db()  # connect_db()로 MySQL 연결
     try:
         with connection.cursor() as cursor:
-            cursor.execute("""
-                INSERT INTO Student (name, student_number, gender, email, club_id, major, GPA, semester, birth_date, status)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """, (name, student_number, gender, email, club_id, major, GPA, semester, birth_date, status))
-            connection.commit()
-            print(f"학생 '{name}'가 성공적으로 추가되었습니다!")
+            # Student 테이블에서 모든 학생 정보 조회
+            query = "SELECT * FROM Student"
+            cursor.execute(query)
+
+            # 결과 출력
+            students = cursor.fetchall()  # 모든 행을 가져옴
+
+            if students:
+                for student in students:
+                    학번, 학생이름, 학과, 이수학기, 성별, 이메일, 생년월일, 성적, 학적상태코드, 소속동아리번호 = student
+                    print(
+                        f"학번: {학번}, 이름: {학생이름}, 학과: {학과}, 이수학기: {이수학기}, 성별: {성별}, 이메일: {이메일}, 생년월일: {생년월일}, 성적: {성적}, 학적상태코드: {학적상태코드}, 소속동아리번호: {소속동아리번호}")
+            else:
+                print("학생 정보가 없습니다.")
     finally:
         connection.close()
 
-#학생 정보 삭제
+# 학생 정보 삽입
+def insert_student():
+    print("\n### 학생 정보 입력 ###")
 
-#학생 정보 출력
+    # 학생 이름 입력
+    while True:
+        name = input("학생 이름: ")
+        if name.strip():
+            break
+        print("학생 이름은 비워둘 수 없습니다.")
 
-#학생 정보 수정
+    # 학번 입력
+    while True:
+        student_number = input("학생 학번: ")
+        if student_number.isdigit() and len(student_number) == 8:  # 예: 학번은 8자리 숫자
+            break
+        print("학번은 8자리 숫자로 입력해야 합니다.")
 
+    # 성별 입력
+    while True:
+        gender = input("성별(남자/여자): ")
+        if gender in ['남자', '여자']:
+            break
+        print("성별은 '남자' 또는 '여자'로 입력해야 합니다.")
 
-#학생관리 메인페이지
+    # 이메일 입력
+    while True:
+        email = input("학생 이메일: ")
+        if "@" in email and "." in email:
+            break
+        print("유효한 이메일 주소를 입력하세요 (예: example@example.com).")
+
+    # 동아리 번호 입력
+    while True:
+        try:
+            club_id = int(input("동아리 번호를 입력하세요 \n(1.cuvic / 2.nova / 3.emsys / 4.PDA / 5.sammaru / 6.TUX / 7.nestnet): "))
+            if 1 <= club_id <= 7:
+                break
+            print("동아리 번호는 1에서 7 사이의 숫자를 입력해야 합니다.")
+        except ValueError:
+            print("유효한 숫자를 입력하세요.")
+
+    # 전공 입력
+    while True:
+        major = input("전공을 입력하세요: ")
+        if major.strip():
+            break
+        print("전공은 비워둘 수 없습니다.")
+
+    # 평균 학점 입력
+    while True:
+        try:
+            GPA = float(input("평균 학점을 입력하세요 (0.0 ~ 4.5): "))
+            if 0.0 <= GPA <= 4.5:
+                break
+            print("평균 학점은 0.0에서 4.5 사이의 값을 입력해야 합니다.")
+        except ValueError:
+            print("유효한 숫자를 입력하세요.")
+
+    # 학기 입력
+    while True:
+        try:
+            semester = int(input("학기를 입력하세요 (1 이상): "))
+            if semester > 0:
+                break
+            print("학기는 1 이상의 숫자를 입력해야 합니다.")
+        except ValueError:
+            print("유효한 숫자를 입력하세요.")
+
+    # 생일 입력
+    while True:
+        birth_date = input("생일을 입력하세요 (YYYY-MM-DD): ")
+        try:
+            import datetime
+            datetime.datetime.strptime(birth_date, "%Y-%m-%d")
+            break
+        except ValueError:
+            print("생일은 'YYYY-MM-DD' 형식으로 입력해야 합니다.")
+
+    # 학적 상태 입력
+    status_dict = {
+        '재학': 1,
+        '휴학': 2,
+        '군휴학': 3,
+        '졸업': 4,
+        '졸업유예': 5,
+        '대학원': 6
+    }
+    while True:
+        status = input("학적 상태를 입력하세요 (재학/휴학/군휴학/졸업/졸업유예/대학원): ")
+        if status in status_dict:
+            status_code = status_dict[status]
+            break
+        print("학적 상태는 '재학', '휴학', '군휴학', '졸업', '졸업유예', '대학원' 중 하나로 입력해야 합니다.")
+
+    # 데이터베이스 연결 및 삽입
+    connection = connect_db()  # connect_db()는 pymysql 또는 mysql.connector를 사용하여 연결하는 함수
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                INSERT INTO Student (학생이름, 학번, 성별, 이메일, 소속동아리번호, 학과, 성적, 이수학기, 생년월일, 학적상태코드)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, (name, student_number, gender, email, club_id, major, GPA, semester, birth_date, status_code))
+            connection.commit()
+            print(f"학생 '{name}'가 성공적으로 추가되었습니다!")
+    except Exception as e:
+        print(f"오류가 발생했습니다: {e}")
+    finally:
+        connection.close()
+
+def update_student():
+    student_number = input("수정할 학생의 학번을 입력하세요: ")
+
+    # 데이터베이스 연결
+    connection = connect_db()
+    try:
+        with connection.cursor() as cursor:
+            # 학생의 현재 정보 조회
+            cursor.execute("SELECT 학번, 학생이름, 학과, 이메일, 학적상태코드 FROM Student WHERE 학번 = %s", (student_number,))
+            student = cursor.fetchone()
+
+            if student:
+                # 학생 정보 출력
+                print(f"학생 정보: 학번={student[0]}, 이름={student[1]}, 학과={student[2]}, 이메일={student[3]}, 학적 상태코드={student[4]}")
+
+                # 학적 상태를 사용자에게 입력받기
+                new_status = input("새 학적 상태를 입력하세요 (재학/휴학/군휴학/졸업/졸업유예/대학원): ")
+
+                # 학적 상태에 맞는 학적상태코드 얻기 (예: 재학 -> 1)
+                status_dict = {
+                    '재학': 1,
+                    '휴학': 2,
+                    '군휴학': 3,
+                    '졸업': 4,
+                    '졸업유예': 5,
+                    '대학원': 6
+                }
+                new_status_code = status_dict.get(new_status, None)
+
+                if new_status_code:
+                    # 학적 상태 코드 업데이트
+                    cursor.execute("""
+                        UPDATE Student
+                        SET 학적상태코드 = %s
+                        WHERE 학번 = %s
+                    """, (new_status_code, student_number))
+                    connection.commit()
+                    print(f"학생 {student_number}의 학적 상태를 '{new_status}'(으)로 업데이트 했습니다!")
+                else:
+                    print("잘못된 학적 상태가 입력되었습니다.")
+            else:
+                print("해당 학번의 학생을 찾을 수 없습니다.")
+    finally:
+        connection.close()
+
+def delete_student():
+    # 삭제 방법 선택
+    choice = input("학생을 삭제하는 방법을 선택하세요:\n1. 졸업인 학생 삭제(용량정리)\n2. 특정 학생 삭제\n선택 (1 또는 2): ")
+
+    # 데이터베이스 연결
+    connection = connect_db()
+    try:
+        with connection.cursor() as cursor:
+            if choice == '1':
+                # 학적 상태가 졸업인 학생조회
+                cursor.execute("""
+                    SELECT 학번, 학생이름 FROM Student
+                    WHERE 학적상태코드 = (SELECT 학적상태코드 FROM Status WHERE 학적상태명 = '졸업')
+                """)
+                students = cursor.fetchall()
+
+                if students:
+                    print("학적 상태가 '졸업'인 학생들:")
+                    for student in students:
+                        print(f"학번: {student[0]}, 이름: {student[1]}")
+
+                    # 졸업한 학생 삭제
+                    delete_confirm = input("위 학생들을 삭제하시겠습니까? (y/n): ")
+                    if delete_confirm.lower() == 'y':
+                        cursor.execute("""
+                            DELETE FROM Student
+                            WHERE 학적상태코드 = (SELECT 학적상태코드 FROM Status WHERE 학적상태명 = '졸업')
+                        """)
+                        connection.commit()
+                        print("졸업한 학생들이 삭제되었습니다.")
+                    else:
+                        print("삭제가 취소되었습니다.")
+                else:
+                    print("학적 상태가 '졸업'인 학생이 없습니다.")
+
+            elif choice == '2':
+                # 특정 학번을 입력받아 삭제
+                student_number = input("삭제할 학생의 학번을 입력하세요: ")
+
+                # 학생 정보 조회
+                cursor.execute("SELECT 학번, 학생이름 FROM Student WHERE 학번 = %s", (student_number,))
+                student = cursor.fetchone()
+
+                if student:
+                    print(f"삭제할 학생: 학번={student[0]}, 이름={student[1]}")
+                    delete_confirm = input("이 학생을 삭제하시겠습니까? (y/n): ")
+                    if delete_confirm.lower() == 'y':
+                        cursor.execute("DELETE FROM Student WHERE 학번 = %s", (student_number,))
+                        connection.commit()
+                        print(f"학번 {student_number} 학생이 삭제되었습니다.")
+                    else:
+                        print("삭제가 취소되었습니다.")
+                else:
+                    print("해당 학번의 학생을 찾을 수 없습니다.")
+            else:
+                print("잘못된 선택입니다. 1 또는 2를 선택하세요.")
+
+    finally:
+        connection.close()
+
+# 학생관리 메인페이지
 def student_menu():
     while True:
         print("\n")
@@ -42,225 +247,21 @@ def student_menu():
         print("1. 학생 조회")
         print("2. 학생 추가")
         print("3. 학생 삭제")
-        print("4. 학생 정보수정")
+        print("4. 학적상태 수정")
         print("5. 뒤로가기")
 
         choice = input("원하는 작업을 선택하세요 (1-5): ")
 
         if choice == '1':
-            create_tables()
+            show_student()
         elif choice == '2':
-            insert_club()
-        elif choice == '3':
             insert_student()
+        elif choice == '3':
+            delete_student()
         elif choice == '4':
-            view_clubs()
+            update_student()
         elif choice == '5':
             print("프로그램을 종료합니다...")
             break
         else:
             print("잘못된 선택입니다. 다시 시도하세요.")
-
-
-
-
-
-
-
-# READ 학생 목록
-def read_students(connection):
-    try:
-        cursor = connection.cursor()
-        query = "SELECT * FROM students"
-        cursor.execute(query)
-        results = cursor.fetchall()
-        print("\n=== Student List ===")
-        for row in results:
-            print(f"ID: {row[0]}, Name: {row[1]}, Age: {row[2]}, Major: {row[3]}, Email: {row[4]}")
-    except Error as e:
-        print(f"Error: {e}")
-
-
-# UPDATE 학생 정보
-def update_student(connection):
-    try:
-        student_id = input("Enter the ID of the student to update: ")
-        new_name = input("Enter new name (leave blank to skip): ")
-        new_age = input("Enter new age (leave blank to skip): ")
-        new_major = input("Enter new major (leave blank to skip): ")
-        new_email = input("Enter new email (leave blank to skip): ")
-
-        updates = []
-        data = []
-        if new_name:
-            updates.append("name = %s")
-            data.append(new_name)
-        if new_age:
-            updates.append("age = %s")
-            data.append(int(new_age))
-        if new_major:
-            updates.append("major = %s")
-            data.append(new_major)
-        if new_email:
-            updates.append("email = %s")
-            data.append(new_email)
-
-        if not updates:
-            print("No updates provided.")
-            return
-
-        query = f"UPDATE students SET {', '.join(updates)} WHERE id = %s"
-        data.append(int(student_id))
-        cursor = connection.cursor()
-        cursor.execute(query, tuple(data))
-        connection.commit()
-        print("Student updated successfully.")
-    except Error as e:
-        print(f"Error: {e}")
-
-
-# DELETE 학생
-def delete_student(connection):
-    try:
-        student_id = input("Enter the ID of the student to delete: ")
-        cursor = connection.cursor()
-        query = "DELETE FROM students WHERE id = %s"
-        cursor.execute(query, (int(student_id),))
-        connection.commit()
-        print("Student deleted successfully.")
-    except Error as e:
-        print(f"Error: {e}")
-
-
-# 메뉴 표시 및 실행
-def main_menu():
-    connection = connect_to_db()
-    if not connection:
-        print("Failed to connect to the database.")
-        return
-
-    while True:
-        print("\n=== Student Management System ===")
-        print("1. Add Student")
-        print("2. View Students")
-        print("3. Update Student")
-        print("4. Delete Student")
-        print("5. Exit")
-
-        choice = input("Enter your choice: ")
-        if choice == "1":
-            create_student(connection)
-        elif choice == "2":
-            read_students(connection)
-        elif choice == "3":
-            update_student(connection)
-        elif choice == "4":
-            delete_student(connection)
-        elif choice == "5":
-            print("Exiting the program.")
-            connection.close()
-            break
-        else:
-            print("Invalid choice. Please try again.")
-
-
-def create_tables():
-    """테이블 생성"""
-    conn = pymysql.connect(
-        host=HOST,
-        port=PORT,
-        user=USER,
-        password=PASSWORD,
-        database=DATABASE,
-        charset="utf8mb4"
-    )
-    if conn.open:
-        print("DB연결 완료.")
-    else:
-        print("DB연결 불가.")
-        return
-    cursor = conn.cursor()
-
-    # Create Student table
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Student (
-        학번 INT PRIMARY KEY,
-        학생이름 VARCHAR(100) NOT NULL,
-        학과 VARCHAR(100) NOT NULL,
-        이수학기 INT,
-        성별 VARCHAR(10),
-        이메일 VARCHAR(100),
-        생년월일 DATE,
-        성적 FLOAT,
-        학적상태코드 INT,
-        소속동아리번호 INT,
-        FOREIGN KEY (학적상태코드) REFERENCES Status(학적상태코드),
-        FOREIGN KEY (소속동아리번호) REFERENCES Club(동아리번호)
-    );
-    ''')
-
-    # Create Status table
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Status (
-        학적상태코드 INT PRIMARY KEY,
-        학적상태명 VARCHAR(100) NOT NULL
-    );
-    ''')
-
-    # Create Club table
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Club (
-        동아리번호 INT PRIMARY KEY,
-        동아리이름 VARCHAR(100) NOT NULL,
-        연구실위치 VARCHAR(100),
-        웹사이트 VARCHAR(100),
-        주요연구분야 VARCHAR(100),
-        담당교수교번 INT,
-        회장학번 INT,
-        FOREIGN KEY (담당교수교번) REFERENCES Professor(교번),
-        FOREIGN KEY (회장학번) REFERENCES Student(학번)
-    );
-    ''')
-
-    # Create Professor table
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Professor (
-        교번 INT PRIMARY KEY,
-        교수이름 VARCHAR(100) NOT NULL,
-        연구실위치 VARCHAR(100),
-        이메일 VARCHAR(100),
-        진임교원여부 BOOLEAN
-    );
-    ''')
-
-    # Create Interest table
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Interest (
-        동아리번호 INT,
-        연구분야 VARCHAR(100),
-        PRIMARY KEY (동아리번호, 연구분야),
-        FOREIGN KEY (동아리번호) REFERENCES Club(동아리번호)
-    );
-    ''')
-
-    conn.commit()
-    cursor.close()
-    conn.close()
-
-def add_student(학번, 학생이름, 학과, 이수학기, 성별, 이메일, 생년월일, 성적, 학적상태코드, 소속동아리번호):
-    """Add a new student to the database."""
-    conn = pymysql.connect(
-        host="localhost",
-        user="root",
-        password="password",
-        database="club_management",
-        charset="utf8mb4"
-    )
-    cursor = conn.cursor()
-    cursor.execute('''
-    INSERT INTO Student (학번, 학생이름, 학과, 이수학기, 성별, 이메일, 생년월일, 성적, 학적상태코드, 소속동아리번호)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    ''', (학번, 학생이름, 학과, 이수학기, 성별, 이메일, 생년월일, 성적, 학적상태코드, 소속동아리번호))
-    conn.commit()
-    cursor.close()
-    conn.close()
