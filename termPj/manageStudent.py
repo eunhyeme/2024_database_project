@@ -36,18 +36,14 @@ def insert_student():
         print("학생 이름은 비워둘 수 없습니다.")
 
     # 학번 입력
-    while True:
-        student_number = input("학생 학번: ")
-        if student_number.isdigit() and len(student_number) == 8:  # 예: 학번은 8자리 숫자
-            break
-        print("학번은 8자리 숫자로 입력해야 합니다.")
+    student_number = input("학생 학번: ")
 
     # 성별 입력
     while True:
-        gender = input("성별(남자/여자): ")
-        if gender in ['남자', '여자']:
+        gender = input("성별(번호입력 - 0:남자/1:여자): ")
+        if gender in ['0', '1']:
             break
-        print("성별은 '남자' 또는 '여자'로 입력해야 합니다.")
+        print("성별은 '0' 또는 '1'로 입력해야 합니다.")
 
     # 이메일 입력
     while True:
@@ -59,19 +55,19 @@ def insert_student():
     # 동아리 번호 입력
     while True:
         try:
-            club_id = int(input("동아리 번호를 입력하세요 \n(1.cuvic / 2.nova / 3.emsys / 4.PDA / 5.sammaru / 6.TUX / 7.nestnet): "))
-            if 1 <= club_id <= 7:
+            club_id = int(input("동아리 번호를 입력하세요 \n(0.무소속 /1.cuvic / 2.nova / 3.emsys / 4.PDA / 5.sammaru / 6.TUX / 7.nestnet): "))
+            if 0 <= club_id <= 7:
                 break
-            print("동아리 번호는 1에서 7 사이의 숫자를 입력해야 합니다.")
+            print("동아리 번호는 0에서 7 사이의 숫자를 입력해야 합니다.")
         except ValueError:
             print("유효한 숫자를 입력하세요.")
 
     # 전공 입력
     while True:
-        major = input("전공을 입력하세요: ")
+        major = input("학과를 입력하세요: ")
         if major.strip():
             break
-        print("전공은 비워둘 수 없습니다.")
+        print("학과는 비워둘 수 없습니다.")
 
     # 평균 학점 입력
     while True:

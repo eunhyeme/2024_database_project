@@ -4,18 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d20c5cc-7f81-4a33-b1b2-0b33165237e7" name="Changes" comment="[테이블 생성 모듈]&#10;&#10;-배포된 pc에서 db를 생성할 수 있는 모듈 추가">
-      <change afterPath="$PROJECT_DIR$/HW#5/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/termPj/connectInfo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/termPj/manageAhievement.py" afterDir="false" />
+    <list default="true" id="6d20c5cc-7f81-4a33-b1b2-0b33165237e7" name="Changes" comment="[메인: 예외처리]&#10;&#10;예외처리를 통해 프로그램 이어가기">
+      <change afterPath="$PROJECT_DIR$/termPj/maketitle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/termPj/connectInfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/termPj/connectInfo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/termPj/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/termPj/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/termPj/makeTable.py" beforeDir="false" afterPath="$PROJECT_DIR$/termPj/makeTable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/termPj/makeTable.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/termPj/manageAhievement.py" beforeDir="false" afterPath="$PROJECT_DIR$/termPj/manageAhievement.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/termPj/manageClub.py" beforeDir="false" afterPath="$PROJECT_DIR$/termPj/manageClub.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/termPj/manageProf.py" beforeDir="false" afterPath="$PROJECT_DIR$/termPj/manageProf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/termPj/manageProperty.py" beforeDir="false" afterPath="$PROJECT_DIR$/termPj/manageProperty.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/termPj/manageStudent.py" beforeDir="false" afterPath="$PROJECT_DIR$/termPj/manageStudent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/termPj/passwd.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +55,15 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.cli.executor": "Run",
+    "Python.connectInfo.executor": "Run",
     "Python.main.executor": "Run",
     "Python.main2.executor": "Run",
+    "Python.maketitle.executor": "Run",
+    "Python.manageAhievement.executor": "Run",
+    "Python.manageClub.executor": "Run",
+    "Python.manageProf.executor": "Run",
+    "Python.manageProperty.executor": "Run",
+    "Python.manageStudent.executor": "Run",
     "Python.passwd.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -103,7 +109,7 @@
       <workItem from="1733579267739" duration="1405000" />
       <workItem from="1733744413161" duration="1157000" />
       <workItem from="1733924531650" duration="2456000" />
-      <workItem from="1733979245270" duration="11607000" />
+      <workItem from="1733979245270" duration="28840000" />
     </task>
     <task id="LOCAL-00001" summary="기본 코드 및 psswd분류">
       <option name="closed" value="true" />
@@ -217,7 +223,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733988823315</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="[UI 포맷 맞추기]&#10;&#10;기존 뒤죽 박죽인 UI 및 플롯 맞추기">
+      <option name="closed" value="true" />
+      <created>1733991445849</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733991445849</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[학생관리: 예외처리]&#10;&#10;예외처리를 통해 프로그램 이어가기">
+      <option name="closed" value="true" />
+      <created>1733993606287</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733993606287</updated>
+    </task>
+    <task id="LOCAL-00017" summary="[메인: 예외처리]&#10;&#10;예외처리를 통해 프로그램 이어가기">
+      <option name="closed" value="true" />
+      <created>1733995380536</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733995380536</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +286,10 @@
     <MESSAGE value="[교수 테이블 관리기능 추가]&#10;&#10;- 커멘드창의 입력을 통해 교수 및 정보CRUD 기능구현" />
     <MESSAGE value="[공공기물 테이블 관리기능 추가]&#10;&#10;- 커멘드창의 입력을 통해 공공기물 CRUD 기능구현" />
     <MESSAGE value="[테이블 생성 모듈]&#10;&#10;-배포된 pc에서 db를 생성할 수 있는 모듈 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="[테이블 생성 모듈]&#10;&#10;-배포된 pc에서 db를 생성할 수 있는 모듈 추가" />
+    <MESSAGE value="[UI 포맷 맞추기]&#10;&#10;기존 뒤죽 박죽인 UI 및 플롯 맞추기" />
+    <MESSAGE value="[학생관리: 예외처리]&#10;&#10;예외처리를 통해 프로그램 이어가기" />
+    <MESSAGE value="[메인: 예외처리]&#10;&#10;예외처리를 통해 프로그램 이어가기" />
+    <option name="LAST_COMMIT_MESSAGE" value="[메인: 예외처리]&#10;&#10;예외처리를 통해 프로그램 이어가기" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -283,7 +316,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/termPj/manageStudent.py</url>
-          <line>37</line>
+          <line>238</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -292,17 +325,29 @@
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/termPj/manageClub.py</url>
-          <line>5</line>
-          <option name="timeStamp" value="12" />
+          <url>file://$PROJECT_DIR$/termPj/manageStudent.py</url>
+          <line>27</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/termPj/manageProperty.py</url>
+          <line>72</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DBproject$cli.coverage" NAME="cli Coverage Results" MODIFIED="1733986913700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW#5" />
-    <SUITE FILE_PATH="coverage/DBproject$main.coverage" NAME="main Coverage Results" MODIFIED="1733986963099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
     <SUITE FILE_PATH="coverage/DBproject$main2.coverage" NAME="main2 Coverage Results" MODIFIED="1733989185074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
+    <SUITE FILE_PATH="coverage/DBproject$main.coverage" NAME="main Coverage Results" MODIFIED="1734008392549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
+    <SUITE FILE_PATH="coverage/DBproject$connectInfo.coverage" NAME="connectInfo Coverage Results" MODIFIED="1734004278724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
+    <SUITE FILE_PATH="coverage/DBproject$manageProf.coverage" NAME="manageProf Coverage Results" MODIFIED="1734005304371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
     <SUITE FILE_PATH="coverage/DBproject$passwd.coverage" NAME="passwd Coverage Results" MODIFIED="1733986944563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
+    <SUITE FILE_PATH="coverage/DBproject$maketitle.coverage" NAME="maketitle Coverage Results" MODIFIED="1733993342560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
+    <SUITE FILE_PATH="coverage/DBproject$manageProperty.coverage" NAME="manageProperty Coverage Results" MODIFIED="1734008380849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
+    <SUITE FILE_PATH="coverage/DBproject$manageAhievement.coverage" NAME="manageAhievement Coverage Results" MODIFIED="1734009301367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
+    <SUITE FILE_PATH="coverage/DBproject$manageStudent.coverage" NAME="manageStudent Coverage Results" MODIFIED="1734006708412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
+    <SUITE FILE_PATH="coverage/DBproject$manageClub.coverage" NAME="manageClub Coverage Results" MODIFIED="1734006450908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/termPj" />
   </component>
 </project>

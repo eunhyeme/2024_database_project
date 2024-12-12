@@ -1,5 +1,4 @@
 import pymysql.cursors
-from makeTable import *
 from manageClub import *
 from manageStudent import *
 from manageProf import *
@@ -29,15 +28,20 @@ def view_clubs():
 #메인메뉴
 def main_menu():
     while True:
-        print("\n")
+        print("=========================")
+        print("  충북대학교 소프트웨어학부")
+        print("   학술 동아리 관리 시스템")
+        print("=========================")
+
         print("1. 동아리 관리")
         print("2. 학생 관리")
         print("3. 교수님 관리")
         print("4. 공공기물 관리")
         print("5. 동아리 실적 관리")
         print("6. 종료")
+        print("=========================")
 
-        choice = input("원하는 작업을 선택하세요 (1-6): ")
+        choice = input("작업을 선택하세요 (1~6): ")
 
         if choice == '1':
             club_menu()
@@ -59,3 +63,4 @@ if __name__ == "__main__":
         maketitle()
         main_menu()
 
+1
