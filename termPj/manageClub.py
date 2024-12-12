@@ -1,132 +1,47 @@
-import mysql.connector
-from mysql.connector import Error
+import pymysql
+from connectInfo import *
 
+# 동아리 정보 삽입 함수
+def insert_club():
+    print("\n### 동아리 정보 입력 ###")
+    name = input("동아리 이름을 입력하세요: ")
+    website = input("동아리 웹사이트를 입력하세요: ")
+    office = input("동아리 연구실을 입력하세요: ")
+    president_student_id = int(input("동아리 대표 학생 ID를 입력하세요: "))
+    major_research_area = input("주요 연구 분야를 입력하세요: ")
 
-# MySQL 데이터베이스 연결
-def connect_to_db():
+    connection = connect_db()
     try:
-        connection = mysql.connector.connect(
-            host="your_centos_server_ip_or_hostname",
-            user="your_username",
-            password="your_password",
-            database="your_database_name"
-        )
-        if connection.is_connected():
-            return connection
-    except Error as e:
-        print(f"Error connecting to MySQL: {e}")
-        return None
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                INSERT INTO Club (name, website, office, president_student_id, major_research_area)
+                VALUES (%s, %s, %s, %s, %s)
+            """, (name, website, office, president_student_id, major_research_area))
+            connection.commit()
+            print(f"동아리 '{name}'가 성공적으로 추가되었습니다!")
+    finally:
+        connection.close()
 
-
-# CREATE 동아리
-def create_club(connection):
-    try:
-        name = input("Enter club name: ")
-        description = input("Enter club description: ")
-        member_count = input("Enter initial member count (default 0): ") or 0
-
-        cursor = connection.cursor()
-        query = "INSERT INTO students_clubs (name, description, member_count) VALUES (%s, %s, %s)"
-        cursor.execute(query, (name, description, int(member_count)))
-        connection.commit()
-        print("Club added successfully.")
-    except Error as e:
-        print(f"Error: {e}")
-
-
-# READ 동아리 목록
-def read_clubs(connection):
-    try:
-        cursor = connection.cursor()
-        query = "SELECT * FROM students_clubs"
-        cursor.execute(query)
-        results = cursor.fetchall()
-        print("\n=== Club List ===")
-        for row in results:
-            print(f"ID: {row[0]}, Name: {row[1]}, Description: {row[2]}, Members: {row[3]}")
-    except Error as e:
-        print(f"Error: {e}")
-
-
-# UPDATE 동아리 정보
-def update_club(connection):
-    try:
-        club_id = input("Enter the ID of the club to update: ")
-        new_name = input("Enter new club name (leave blank to skip): ")
-        new_description = input("Enter new description (leave blank to skip): ")
-        new_member_count = input("Enter new member count (leave blank to skip): ")
-
-        updates = []
-        data = []
-        if new_name:
-            updates.append("name = %s")
-            data.append(new_name)
-        if new_description:
-            updates.append("description = %s")
-            data.append(new_description)
-        if new_member_count:
-            updates.append("member_count = %s")
-            data.append(int(new_member_count))
-
-        if not updates:
-            print("No updates provided.")
-            return
-
-        query = f"UPDATE students_clubs SET {', '.join(updates)} WHERE id = %s"
-        data.append(int(club_id))
-        cursor = connection.cursor()
-        cursor.execute(query, tuple(data))
-        connection.commit()
-        print("Club updated successfully.")
-    except Error as e:
-        print(f"Error: {e}")
-
-
-# DELETE 동아리
-def delete_club(connection):
-    try:
-        club_id = input("Enter the ID of the club to delete: ")
-        cursor = connection.cursor()
-        query = "DELETE FROM students_clubs WHERE id = %s"
-        cursor.execute(query, (int(club_id),))
-        connection.commit()
-        print("Club deleted successfully.")
-    except Error as e:
-        print(f"Error: {e}")
-
-
-# 메뉴 표시 및 실행
-def main_menu():
-    connection = connect_to_db()
-    if not connection:
-        print("Failed to connect to the database.")
-        return
-
+def club_menu():
     while True:
-        print("\n=== Department Club Management ===")
-        print("1. Add Club")
-        print("2. View Clubs")
-        print("3. Update Club")
-        print("4. Delete Club")
-        print("5. Exit")
+        print("\n")
+        print("==공공기물 관리==")
+        print("1. 공공기물 조회")
+        print("2. 공공기물 추가")
+        print("3. 공공기물 삭제")
+        print("4. 공공기물 상태수정")
+        print("5. 뒤로가기")
 
-        choice = input("Enter your choice: ")
-        if choice == "1":
-            create_club(connection)
-        elif choice == "2":
-            read_clubs(connection)
-        elif choice == "3":
-            update_club(connection)
-        elif choice == "4":
-            delete_club(connection)
-        elif choice == "5":
-            print("Exiting the program.")
-            connection.close()
+        choice = input("원하는 작업을 선택하세요 (1-5): ")
+
+        if choice == '1':
+            create_tables()
+        elif choice == '2':
+            insert_club()
+        elif choice == '3':
+            insert_student()
+        elif choice == '4':
+            view_clubs()
+        elif choice == '5':
+            print("프로그램을 종료합니다...")
             break
-        else:
-            print("Invalid choice. Please try again.")
-
-
-# 메인 실행
-if __name__ == "__main__":
-    main_menu()
