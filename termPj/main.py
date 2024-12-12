@@ -6,6 +6,7 @@ from manageProf import *
 from manageProperty import *
 import pymysql
 from connectInfo import *
+from termPj.maketitle import maketitle
 from termPj.manageAhievement import achievement_menu
 
 
@@ -52,8 +53,9 @@ def main_menu():
             print("안녕히 가세요")
             break
         else:
-            print("잘못된 선택입니다. 다시 시도하세요.")
+            print("잘못된 값입니다. 다시 입력하세요.")
 
 if __name__ == "__main__":
-    print
-    main_menu()
+        maketitle()
+        main_menu()
+
